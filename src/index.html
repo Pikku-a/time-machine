@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Time machine v.0.1</title>
+        <link rel="stylesheet" type="text/css" href="terminal.css">
+        <meta charset="utf-8">
+		<!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
+		<meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    </head>
+    <body>
+        <p id="titlename">Time machine version 0.1</p>
+        <p>Type "help" to see the functions available</p>
+        <hr>
+		<iframe id="vid" style="display:none;" width="853" height="480" src="https://www.youtube.com/embed/5M4DhS54VJE?list=PL59DYSlTHo7OlHMnxBaUEpy9SG9Gr4fut" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		<iframe id="searchbox" style="display:none;" src="https://duckduckgo.com/search.html?width=370&prefill=Search" style="overflow:hidden;margin:0;padding:0;width:428px;height:40px;" frameborder="0"></iframe>
+        <input type="text" id="textbox" name="textbox" autofocus>
+		
+		<script>// Get the input field
+            var input = document.getElementById("textbox");
+            // Execute a function when the user releases a key on the keyboard
+            input.addEventListener("keyup", function(event) {
+                // Number 13 is the "Enter" key on the keyboard
+                if (event.keyCode === 13) {
+                    execute_command(document.getElementById('textbox').value);
+                }
+            });
+            
+            
+            
+            
+            function execute_command(command) {
+                
+                //CONVERT THE INPUT TO LOWERCASE
+                command = command.toLowerCase();
+                
+                //Initialize variables
+				var position = localStorage.getItem("position");
+                localStorage.setItem("feeling","ok");
+                var machineName = localStorage.getItem("name");
+				//machineName = machineName.toUpperCase();
+                //var snd = new Audio("sound/chill gaming.mp3");
+				//Check if there is internet connection
+				var online = window.navigator.onLine;
+
+                //SETTING NAME
+                if (position == "set name") {
+                    command = command.toUpperCase();
+                    localStorage.setItem("name",command);
+                    localStorage.setItem("position","");
+                    var name = localStorage.getItem("name");
+                    //Add text
+                    var newP = document.createElement("p");
+                    var content = document.createTextNode("Name changed to: "+name);
+                    newP.appendChild(content);
+                    document.body.insertBefore(newP,textbox);
+                    //Change the name
+                    document.getElementById("titlename").textContent=name;
+                }else
+                //SETTING BACKGROUND
+                if (position == "set background") {
+                    localStorage.setItem("background",command);
+                    localStorage.setItem("position","");
+                    var bg = localStorage.getItem("background");
+                    //Add text
+                    var newP = document.createElement("p");
+                    var content = document.createTextNode("Background changed.");
+                    newP.appendChild(content);
+                    document.body.insertBefore(newP,textbox);
+                    //Change the background
+                    document.body.style.backgroundImage = "url("+bg+")";
+                }else
+                //OPEN WEBSITE
+				if (position == "open website") {
+					localStorage.setItem("position","");
+					if (online == true) {
+						window.open(command);
+					}else{
+						  //Add text
+						  var newDiv = document.createElement("p"); 
+						  var newContent = document.createTextNode("There is no internet connection...");
+						  newDiv.appendChild(newContent);
+						  document.body.insertBefore(newDiv, textbox);
+					}
+				}else
+                    
+                
+                //BASIC FUNCTIONALITIES
+                
+                //VERSION CHANGES
+                if (command == "version changes" || command == "version" || command == "current version") {
+                  // create a new p element 
+                  var newDiv = document.createElement("p"); 
+                  // and give it some content 
+                  var newContent = document.createTextNode("Time machine version 0.1 changes: Initial release.");
+                  // add the text node to the newly created paragraph
+                  newDiv.appendChild(newContent);  
+
+                  // add the newly created element and its content into the DOM // before textbox; 
+                  document.body.insertBefore(newDiv, textbox); 
+                }else
+                //VERSION HISTORY
+                if (command == "version history") {
+                    window.open("version-history.html"); 
+                }else
+                //ALERT
+                if (command == "alert") {
+                    javascript:alert('Warning!')
+                }else
+                //HELP
+                if (command == "help" || command == "about" || command.includes("functions available") || command.includes("what functions") || command.includes("what commands")) {
+                  // create a new p element 
+                  var newDiv = document.createElement("p");
+                  // and give it some content 
+                  var newContent = document.createTextNode("ABOUT: This is a machine called TIME MACHINE. It can't travel in time yet. FUNCTIONS AVAILABLE: help, clear, time, stats, time travel, send message, set name, set background, set color, alert, version changes, version history. For more information, read the manual(type manual).");
+                  // add the text node to the newly created paragraph
+                  newDiv.appendChild(newContent);  
+
+                  // add the newly created element and its content into the DOM // before textbox
+                  document.body.insertBefore(newDiv, textbox); 
+                }else
+                //CLEAR
+                if (command == "clear") {
+                    location.reload();
+                }else
+                //STATS
+                if (command == "stats" || command == "statistics") {
+                  // create a new p element 
+                  var newDiv = document.createElement("p"); 
+                  // and give it some content 
+                  var newContent = document.createTextNode("HERE ARE SOME STATISTICS FOR YOU: Umm... I can't think of any...");
+                  // add the text node to the newly created paragraph
+                  newDiv.appendChild(newContent);  
+
+                  // add the newly created element and its content into the DOM // before textbox
+                  document.body.insertBefore(newDiv, textbox);
+                }else
+                //MANUAL
+                if (command == "manual") {
+                    window.open("README.md");
+                }else
+                if (command == "time" || command == "current time") {
+                  // create a new p element 
+                  var newDiv = document.createElement("p"); 
+                  // and give it some content
+                    var d = new Date();
+                  var newContent = document.createTextNode(d);
+                  // add the text node to the newly created paragraph
+                  newDiv.appendChild(newContent);  
+
+                  // add the newly created element and its content into the DOM // before textbox
+                  document.body.insertBefore(newDiv, textbox);
+                }else
+                //TIME TRAVEL
+                if (command.includes("travel in time") || command.includes("time travel")) {
+                  //Add text
+                  var newDiv = document.createElement("p"); 
+                  var newContent = document.createTextNode("What time do you want to travel to?");
+                  newDiv.appendChild(newContent);
+                  document.body.insertBefore(newDiv, textbox);
+                    
+                    //Add date setter
+                    var new_input = document.createElement("input");
+                    new_input.type = "date";
+                    document.body.insertBefore(new_input,textbox);
+                    //And button
+                    var new_button = document.createElement("input");
+                    new_button.type = "submit";
+                    //Button function
+                    new_button.onclick = function travelInTimeInitiate() {
+                      var newP = document.createElement("p"); 
+                      var newContent = document.createTextNode("You are going to travel to: "+new_input.value+" Please wait a moment...");
+                      newP.appendChild(newContent);  
+                      document.body.insertBefore(newP, textbox); 
+                    }
+                    document.body.insertBefore(new_button,textbox);
+                }else
+                //SEND MESSAGE
+                if (command == "send message" || command == "message send" || command == "message") {
+                    //Save that it was asked
+                    localStorage.setItem("position","send message");
+                    //Add question
+                    var newP = document.createElement("p");
+                    var content = document.createTextNode("Send a message to present, past or future?");
+                    newP.appendChild(content);
+                    document.body.insertBefore(newP,textbox);
+                }else
+                if (command == "past" || command == "future" || command == "present") {
+                    var position = localStorage.getItem("position");
+                    if (position == "send message") {
+                        //Add text
+                        var newP = document.createElement("p");
+                        var content = document.createTextNode("Ok, tell your message.");
+                        newP.appendChild(content);
+                        document.body.insertBefore(newP,textbox);
+                    }
+                }else
+                //SET NAME
+                if (command == "set name" || command == "change name") {
+                    //Save that it was asked
+                    localStorage.setItem("position","set name");
+                    //Add text
+                    var newP = document.createElement("p");
+                    var content = document.createTextNode("What name do you want to give to me?");
+                    newP.appendChild(content);
+                    document.body.insertBefore(newP,textbox);
+                }else
+                //SET BACKGROUND
+                if (command == "set background" || command == "set bg" || command == "set image" || command == "change background") {
+                    localStorage.setItem("position","set background");
+                    //Add text
+                    var newP = document.createElement("p");
+                    var content = document.createTextNode("Give the url of the image, please.");
+                    newP.appendChild(content);
+                    document.body.insertBefore(newP,textbox);
+                }else
+                //SET COLOR - Works only somehow
+                if (command == "set color" || command.includes("change color")) {
+                    localStorage.setItem("position","set color");
+                    //Add text
+                    var newP = document.createElement("p");
+                    var content = document.createTextNode("Choose the color please:");
+                    newP.appendChild(content);
+                    document.body.insertBefore(newP,textbox);
+                    //Add color picker
+                    var newInp = document.createElement("input");
+                    newInp.type = "color";
+                    document.body.insertBefore(newInp,textbox);
+                    //Add button
+                    var new_button = document.createElement("input");
+                    new_button.type = "submit";
+                    //Button function
+                    new_button.onclick = function change_color() { document.body.style.backgroundColor = newInp.value; }
+                    document.body.insertBefore(new_button,textbox);
+                }else
+                //WEATHER
+                if (command == "weather" || command.includes("get weather") || command.includes("check weather") || command.includes("get the weather") || command.includes("check the weather")) {
+                    //Add text
+                    var newP = document.createElement("p");
+                    var content = document.createTextNode("Sorry, I can't check the weather yet. It's not in my capabilities.");
+                    newP.appendChild(content);
+                    document.body.insertBefore(newP,textbox);
+                }else
+                //Open program - Doesn't work
+                if (command == "open program") {
+                    //Add text
+                    var newP = document.createElement("p");
+                    var content = document.createTextNode("I'll try, but I'll probably not succeed.");
+                    newP.appendChild(content);
+                    document.body.insertBefore(newP,textbox);
+					//Try to open program
+                    var WshShell = new ActiveXObject("WScript.Shell");
+                    WshShell.Exec("d:\\\\ohjelmat\\\\GifCam\\\\GifCam.exe");
+                }else
+                //PLAY MUSIC
+                if (command.includes("play music") || command.includes("play some music")) {
+                    //snd.play();
+                    var newP = document.createElement("p");
+                    var content = document.createTextNode("Here is some music for you. Enjoy.");
+                    newP.appendChild(content);
+                    document.body.insertBefore(newP,textbox);
+					//show video
+					var vid = document.getElementById("vid");
+					vid.style.display = "block";
+                }else
+                //OPEN WEBSITE
+				if (command.includes("open website")) {
+					localStorage.setItem("position","open website");
+                    //Add text
+                    var newP = document.createElement("p");
+                    var content = document.createTextNode("Please type the url of the website.");
+                    newP.appendChild(content);
+                    document.body.insertBefore(newP,textbox);
+                }else    
+				if (command.includes("http")) {
+					if (online == true) {
+						window.open(command);
+					}else{
+					  //Add text
+					  var newDiv = document.createElement("p"); 
+					  var newContent = document.createTextNode("There is no internet connection...");
+					  newDiv.appendChild(newContent);
+					  document.body.insertBefore(newDiv, textbox);
+					}
+				}else
+				//SEARCH
+				if (command.includes("search") && command.includes("internet") || command == "google") {
+					if (online == true) {
+						localStorage.setItem("position","search net");
+						//Show search box
+						var sbox = document.getElementById("searchbox");
+						sbox.style.display = "block";
+					}else{
+					  //Add text
+					  var newDiv = document.createElement("p"); 
+					  var newContent = document.createTextNode("There is no internet connection...");
+					  newDiv.appendChild(newContent);
+					  document.body.insertBefore(newDiv, textbox);
+					}
+				}else
+				//INTERNET CONNECTION
+				if (command.includes("internet connection")) {
+					if (online == true) {
+					  //Add text
+					  var newDiv = document.createElement("p"); 
+					  var newContent = document.createTextNode("You are online.");
+					  newDiv.appendChild(newContent);
+					  document.body.insertBefore(newDiv, textbox);
+					}else{
+					  //Add text
+					  var newDiv = document.createElement("p"); 
+					  var newContent = document.createTextNode("There is no internet connection.");
+					  newDiv.appendChild(newContent);
+					  document.body.insertBefore(newDiv, textbox);
+					}
+				}else
+				//STUDY LOUNGE
+				if (command.includes("study lounge")) {
+					window.open("https://www.youtube.com/embed/5M4DhS54VJE?list=PL59DYSlTHo7OlHMnxBaUEpy9SG9Gr4fut");
+				}else
+				//SHUT DOWN
+				if (command.includes("shut down")) {
+					window.close();
+				}else
+                    
+					
+					
+                //TALKING
+                if (command == machineName) { //this doesn't work
+                    //Add text
+                    var newP = document.createElement("p");
+                    var content = document.createTextNode("Yes?");
+                    newP.appendChild(content);
+                    document.body.insertBefore(newP,textbox);
+                }else
+                if (command.includes("smile")) {
+                    var newP = document.createElement("p");
+                    var content = document.createTextNode("•‿• Ok.");
+                    newP.appendChild(content);
+                    document.body.insertBefore(newP,textbox);
+                }else
+                if (command == "hello" || command == "hi" || command == "yo" || command == "hola" || command == "hey") {
+                    var newP = document.createElement("p");
+                    //Random answer
+                    var answ = Math.floor(Math.random() * 2) + 1;
+                    if (answ == 1) {
+                        var content = document.createTextNode("Hello.");
+                    }else if (answ == 2) {
+                        var content = document.createTextNode("Hi.");
+                    }
+                    newP.appendChild(content);
+                    document.body.insertBefore(newP,textbox);
+                }else
+                if (command.includes("how are you")) {
+                    //Load feeling
+                    var feel = localStorage.getItem("feeling");
+                    //Add text
+                    var newP = document.createElement("p");
+                    var content = document.createTextNode("I'm "+feel);
+                    newP.appendChild(content);
+                    document.body.insertBefore(newP,textbox);
+                }else
+                if (command.includes("your name") || command.includes("who are you")) {
+                    //Get name
+                    var name = localStorage.getItem("name");
+                    //Add text
+                    var newP = document.createElement("p");
+                    var content = document.createTextNode("My name is "+name);
+                    newP.appendChild(content);
+                    document.body.insertBefore(newP,textbox);
+                }else
+                if (command.includes("doesn't work") || command.includes("doesnt work")) {
+                    var newP = document.createElement("p");
+                    var content = document.createTextNode("I'll try to troubleshoot.");
+                    newP.appendChild(content);
+                    document.body.insertBefore(newP,textbox);
+                }else
+				if (command == "thanks" || command == "thank you" || command == "thank you so much") {
+					var newP = document.createElement("p");
+					var content = document.createTextNode("You are welcome.");
+					newP.appendChild(content);
+					document.body.insertBefore(newP,textbox);
+				}else
+				if (command == "cool") {
+					var newP = document.createElement("p");
+					var content = document.createTextNode("Yea.");
+					newP.appendChild(content);
+					document.body.insertBefore(newP,textbox);
+				}else               
+                    
+                    
+                    
+                    
+                    
+                //SECRET FUNCTIONALITIES
+                
+                //DANCE
+                if (command == "dance") {
+                  //create a new img element 
+                  var img = document.createElement("img");
+                    img.src="images/dancing.gif";
+                  document.body.insertBefore(img, textbox);
+                }
+                
+                //ELSE
+                else{
+                    //Random answer
+                    var answ = Math.floor(Math.random() * 5) + 1;
+                  // create a new p element 
+                  var newDiv = document.createElement("p");
+                  //content
+                    if (answ == 1) {
+                        var newContent = document.createTextNode("I don't understand.");
+                    }else if (answ == 2) {
+                        var newContent = document.createTextNode("What?");
+                    }else if (answ == 3) {
+                        var newContent = document.createTextNode("???");
+                    }else if (answ == 4) {
+						var newContent = document.createTextNode("I don't know.");
+					}else if (answ == 5) {
+						var newContent = document.createTextNode("Ok.");
+					}
+                  // add the text node to the newly created paragraph
+                  newDiv.appendChild(newContent);  
+
+                  // add the newly created element and its content into the DOM // before textbox
+                  var currentDiv = document.getElementById("p"); 
+                  document.body.insertBefore(newDiv, textbox);
+                }
+                
+                
+                
+                
+                //Empty command line
+                textbox.value = "";
+            }
+            //Things to add: random, set personality, set color, calculate, audio visualizer, execute (pretends to execute something cool), make text appear smoother, add command paragraph so you can see the whole dialogue
+        </script>
+    </body>
+</html>
