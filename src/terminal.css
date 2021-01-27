@@ -54,3 +54,6 @@ input:focus {
 hr {
     color: forestgreen;
 }
+body {
+	Overflow-y:scroll;
+}

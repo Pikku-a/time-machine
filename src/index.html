@@ -58,6 +58,7 @@
                 }else
                 //SETTING BACKGROUND
                 if (position == "set background") {
+					//Set bg
                     localStorage.setItem("background",command);
                     localStorage.setItem("position","");
                     var bg = localStorage.getItem("background");
@@ -138,7 +139,7 @@
                 if (command == "manual") {
                     window.open("README.md");
                 }else
-                if (command == "time" || command == "current time") {
+                if (command == "time" || command == "current time" || command.includes("date")) {
                   // create a new p element 
                   var newDiv = document.createElement("p"); 
                   // and give it some content
@@ -338,7 +339,7 @@
                     newP.appendChild(content);
                     document.body.insertBefore(newP,textbox);
                 }else
-                if (command == "hello" || command == "hi" || command == "yo" || command == "hola" || command == "hey") {
+                if (command.includes("hello") || command.includes("hi") || command == "yo" || command == "hola" || command == "hey" || command.includes("moi") || command.includes("hei")) {
                     var newP = document.createElement("p");
                     //Random answer
                     var answ = Math.floor(Math.random() * 2) + 1;
@@ -386,7 +387,31 @@
 					newP.appendChild(content);
 					document.body.insertBefore(newP,textbox);
 				}else               
-                    
+                
+				//WHAT IS COMMAND = SEARCH FROM INTERNET OR XML FILE
+				/*if (command.includes("what is")) {
+					var term = command.split('what is ');
+					//Get it from xml file
+					var strXML = '<?xml version="1.0" encoding="utf-8"?><ai><name>AI</name></ai>';
+					//'<?xml version="1.0" encoding="utf-8"?><Events><EventItem id="101"><Country>India</Country><Phone Link="12345">homes</Phone></EventItem></Events>'; 
+
+					var parser = new DOMParser();  
+					var doc = parser.parseFromString(strXML, 'text/xml'); // For Firefox, Chrome etc  
+					
+					var x = doc.getElementsByTagName("ai");
+					/*for (i = 0;i < x.length; i++)  
+					{
+					   console.log(x.getElements(term));   
+					}
+
+					//Get it from internet
+					
+					//Show the answer
+					var newP = document.createElement("p");
+					var content = document.createTextNode("");
+					newP.appendChild(content);
+					document.body.insertBefore(newP,textbox);
+				}else         */
                     
                     
                     
@@ -433,7 +458,7 @@
                 //Empty command line
                 textbox.value = "";
             }
-            //Things to add: random, set personality, set color, calculate, audio visualizer, execute (pretends to execute something cool), make text appear smoother, add command paragraph so you can see the whole dialogue
+            //Things to add: random, set personality, set color, calculate, audio visualizer, execute (pretends to execute something cool), make text appear smoother, add command paragraph so you can see the whole dialogue, organize code to different files?
         </script>
     </body>
 </html>
