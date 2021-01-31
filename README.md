@@ -1,11 +1,12 @@
 # time-machine
-Time machine artificial intelligence
+## Time machine artificial intelligence
+### Its purpose is to assist you and make computer work easier. Also, you can talk to it.
 
-Work in progress
+Work in progress - This is in very early development. Feel free to contribute and help improve it.
+Licence: MIT License
 
 ## Things to add
 - I [need help], [help me]
-- random
 - set personality
 - set color (it's done but works poorly)
 - calculate

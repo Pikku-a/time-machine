@@ -38,7 +38,7 @@
                 localStorage.setItem("feeling","ok");
                 var machineName = localStorage.getItem("name");
 				//machineName = machineName.toUpperCase();
-                //var snd = new Audio("sound/chill gaming.mp3");
+                //var snd = new Audio("sound/songname.mp3");
 				//Check if there is internet connection
 				var online = window.navigator.onLine;
 
@@ -112,7 +112,7 @@
                   // create a new p element 
                   var newDiv = document.createElement("p");
                   // and give it some content 
-                  var newContent = document.createTextNode("ABOUT: This is a machine called TIME MACHINE. It can't travel in time yet. FUNCTIONS AVAILABLE: help, clear, time, stats, time travel, send message, set name, set background, set color, alert, version changes, version history. For more information, read the manual(type manual).");
+                  var newContent = document.createTextNode("ABOUT: This is a machine called TIME MACHINE. It can't travel in time yet. FUNCTIONS AVAILABLE: help, clear, time, stats, time travel, send message, set name, set background, set color, alert, version changes, version history. There are more functions and you can talk to it too. For more information, read the readme (type readme).");
                   // add the text node to the newly created paragraph
                   newDiv.appendChild(newContent);  
 
@@ -136,7 +136,7 @@
                   document.body.insertBefore(newDiv, textbox);
                 }else
                 //MANUAL
-                if (command == "manual") {
+                if (command == "manual" || command == "readme") {
                     window.open("README.md");
                 }else
                 if (command == "time" || command == "current time" || command.includes("date")) {
