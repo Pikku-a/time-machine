@@ -8,7 +8,7 @@
 		<meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
     </head>
     <body>
-        <p id="titlename">Time machine version 0.1</p>
+        <p id="titlename">Time machine version 1.0.0 | © Pikku-a 2021 | <a href="https://github.com/Pikku-a/time-machine" target="_blank">Source code</a></p>
         <p>Type "help" to see the functions available</p>
         <hr>
 		<iframe id="vid" style="display:none;" width="853" height="480" src="https://www.youtube.com/embed/5M4DhS54VJE?list=PL59DYSlTHo7OlHMnxBaUEpy9SG9Gr4fut" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -102,6 +102,10 @@
                 //VERSION HISTORY
                 if (command == "version history") {
                     window.open("version-history.html"); 
+                }else
+				//SOURCE CODE
+				if (command == "source code") {
+                    window.open("https://github.com/Pikku-a/time-machine"); 
                 }else
                 //ALERT
                 if (command == "alert") {
