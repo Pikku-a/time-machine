@@ -12,6 +12,7 @@ Licence: MIT License
 - calculate
 - audio visualizer
 - execute (pretends to execute something cool)
+- cancel (cancel previous change)
 
 ## Things to fix
 - make text appear smoother
