@@ -6,6 +6,7 @@ Work in progress - This is in very early development. Feel free to contribute an
 Licence: MIT License
 
 ## Things to add
+- Remember things (like name, etc.)
 - I [need help], [help me]
 - set personality
 - set color (it's done but works poorly)
